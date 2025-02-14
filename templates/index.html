@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+   <meta charset="UTF-8" />
+
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+   <title>Image Upload App</title>
+
+   <style>
+
+    body {
+
+           font-family: Arial, sans-serif;
+
+           background-color: #f4f4f9;
+
+           margin: 0;
+
+           padding: 0;
+
+       }
+
+       h1, h2 {
+
+           color: #333;
+
+           text-align: center;
+
+       }
+
+       h1 {
+
+           margin-top: 20px;
+
+       }
+
+       form {
+
+           max-width: 600px;
+
+           margin: 20px auto;
+
+           background: #ffffff;
+
+           padding: 15px;
+
+           border-radius: 8px;
+
+           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+       }
+
+       form input[type="file"] {
+
+           display: block;
+
+           margin: 10px auto 20px;
+
+           padding: 10px;
+
+           border: 1px solid #ddd;
+
+           border-radius: 5px;
+
+           width: 90%;
+
+           box-sizing: border-box;
+
+       }
+
+       form button {
+
+           display: block;
+
+           width: 100%;
+
+           padding: 10px;
+
+           font-size: 16px;
+
+           font-weight: bold;
+
+           background-color: #4caf50;
+
+           color: #fff;
+
+           border: none;
+
+           border-radius: 5px;
+
+           cursor: pointer;
+
+           transition: background-color 0.3s ease;
+
+       }
+
+       form button:hover {
+
+           background-color: #45a049;
+
+       }
+
+       ul {
+
+           max-width: 900px;
+
+           margin: 20px auto;
+
+           padding: 0;
+
+           list-style: none;
+
+           display: flex;
+
+           flex-wrap: wrap;
+
+           justify-content: center;
+
+           gap: 20px;
+
+       }
+
+       li {
+
+           flex: 1 1 calc(25% - 20px);
+
+           max-width: 200px;
+
+           margin: 10px;
+
+           text-align: center;
+
+       }
+
+       img {
+
+           max-width: 100%;
+
+           max-height: 500px;
+
+           border-radius: 8px;
+
+           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+           transition: transform 0.3s ease;
+
+       }
+
+       img:hover {
+
+           transform: scale(1.05);
+
+       }
+
+   </style>
+
+</head>
+
+<body>
+
+   <h1>Upload an Image</h1>
+
+   <form action="{{ url_for('upload_image') }}" method="post" enctype="multipart/form-data">
+
+       <input type="file" name="image" accept="image/*" required>
+
+       <button type="submit">Upload</button>
+
+   </form>
+
+   <h2>Uploaded Images</h2>
+
+   <ul>
+
+       {% for image in images %}
+
+       <li>
+
+           <img src="{{ url_for('uploaded_file', filename=image) }}">
+
+       </li>
+
+       {% endfor %}
+
+   </ul>
+
+</body>
+
+</html>
+
